@@ -16,12 +16,24 @@
  limitations under the License.
  */
 
-import java.util.*;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.font.FontRenderContext;
+import java.awt.font.GlyphVector;
+import java.awt.image.BufferedImage;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import processing.core.PApplet;
-import processing.core.PGraphics;
 import processing.core.PFont;
-import wordcram.*;
+import processing.core.PGraphics;
+import wordcram.Anglers;
+import wordcram.Colorers;
+import wordcram.Sizers;
+import wordcram.Word;
+import wordcram.WordCram;
 
 public class WordCloud extends PApplet {
 	
@@ -81,6 +93,18 @@ public class WordCloud extends PApplet {
             return;
         }
         
+        Font f = new Font("DroidSans", Font.PLAIN, 1000);
+        
+        Shape shape;
+        BufferedImage img;
+        Graphics2D g2d;
+        FontRenderContext frc;
+        img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        g2d = img.createGraphics();
+        frc = g2d.getFontRenderContext();
+        GlyphVector gv = f.createGlyphVector(frc, "❤");
+        shape = gv.getOutline(50,900);
+        
 	// tell the context we're starting to draw
         context.beginDraw();
         context.background(255);
@@ -101,10 +125,12 @@ public class WordCloud extends PApplet {
 		.withAngler(Anglers.mostlyHoriz())
 //		.angledBetween(10, 45)
 //		.withPlacer(Placers.centerClump())
-		.withPlacer(Placers.swirl())
+		.withPlacer(new ShapeBasedPlacer(shape))
+		
+//		.withPlacer(Placers.swirl())
 //		.withCustomCanvas(new PG)
 		
-		.withSizer(Sizers.byWeight(5, 90))
+		.withSizer(Sizers.byWeight(10, 60))
 		
 		.withWordPadding(3)
 		
