@@ -12,7 +12,8 @@ public class Test{
 		WordCloud g = new WordCloud();
 
 	// initialize it, passing the length and width of the desired target image
-        g.initialize(800, 400);
+//        g.initialize(1000, 1000);
+        g.initialize(1000, 1000);
 
 	// have the GraphRenderer render out to a file; the file extension determines the output format
         g.render("./pjh.png");

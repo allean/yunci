@@ -96,16 +96,17 @@ public class WordCloud extends PApplet {
 		.withFonts(randomFont())
 		.withColorer(Colorers.twoHuesRandomSats(this))
 //		.withColorer(Colorers.sameColor(this, 128))
-//		.withColors(12,34,56,78,90,123,134,156,189)
+//		.withColors(0)
 //		.withColorer(Colorers.complement(this, random(255), 200, 220))
 		.withAngler(Anglers.mostlyHoriz())
-//		.withPlacer(Placers.horizLine())
-		.withPlacer(Placers.wave())
+//		.angledBetween(10, 45)
+//		.withPlacer(Placers.centerClump())
+		.withPlacer(Placers.swirl())
 //		.withCustomCanvas(new PG)
 		
 		.withSizer(Sizers.byWeight(5, 90))
 		
-		.withWordPadding(1)
+		.withWordPadding(3)
 		
 //		.minShapeSize(0)
 //		.withMaxAttemptsForPlacement(10)
